@@ -1,0 +1,55 @@
+#include <iostream>
+using namespace std;
+
+// прототип функції, яка виконує сортування бульбашкою
+void bubbleSort(int arrForSort[], const int SIZE); 
+
+void main()
+{	
+	setlocale(LC_ALL, "rus");
+	const int SIZE = 5;
+	int arr[SIZE];
+
+	cout << "Початковий масив:\n";
+	for (int i = 0; i < SIZE; i++)
+	{
+		arr[i] =  SIZE - i; // заповняємо значення за зменшенням
+		cout << arr[i] << "\n__\n";
+	}
+	cout << "\n\n";
+
+	bubbleSort(arr, SIZE);  // передаємо в функцію для сортування
+
+	cout << "Масив після сортування:\n";
+	for (int i = 0; i < SIZE; i++)
+	{
+		cout << arr[i] << "\n__\n";
+	}
+	cout << "\n\n";
+}
+
+void bubbleSort(int arrForSort[], const int SIZE)
+{
+	int buff = 0; // для тимчасового зберігання значення, при перезаписування
+
+	for (int i = 0; i < SIZE - 1; i++) // 
+	{
+		// вкладений цикл проходить від четвертого елемента
+		// до першого, знаходить за допомогою if найпростіше значення,
+		// порівнюючи сусідні пари елементів,
+		// ріднімає його в нульову комірку масива
+		for (int j = SIZE - 1; j > i; j--) 
+		{
+			if (arrForSort[j] < arrForSort[j - 1])
+			{
+				buff = arrForSort[j - 1];
+				arrForSort[j - 1] = arrForSort[j];
+				arrForSort[j] = buff;
+			}
+		}
+		// далі значення i збільшується на 1
+		// і внутрішній цикл буде перебирати елементи 
+		// від четвертого до другого. таким чином піднімаючи
+		// "найпростіше" значення з залишку в першу комірку і так далі
+}
+}
