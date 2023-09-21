@@ -1,13 +1,32 @@
-#include <iostream.h> 
-#include <ctime>
-void Initialize(int arr[], int size);
-void Show(const int arr[], int size);
+#include <iostream>
+using namespace std;
+
 int main()
 {
-strand(static_cast<unsigned>(time(nullptr)));
-const int SIZE = 10;
-int arr[SIZE];
-Initialize(arr, SIZE);
-Show (arr, SIZE);
-return 0;
+	const int N = 10;
+	int a[N] = { 1, 25, 6, 32, 43, 5, 96, 23, 4, 55 };
+	
+	int min = 0;	// для запису мінімального значення
+	int buf = 0;	// для обміна значеннями
+
+	/*********** Початок сортування **************/
+	for (int i = 0; i < N; i++)
+	{
+		min = i; // запам'ятовую номер цієї комірки, так само як номер комірки з мінімальним значенням
+		// в циклі находжу реальний номер комірки з мінімальним значенням
+		for (int j = i + 1; j < N; j++)
+			min = ( a[j] < a[min] ) ? j : min;
+		// роблю перестановку цього елементу, але змінивши його місцями з даним елементом
+		if (i != min)
+		{
+			buf = a[i];
+			a[i] = a[min];
+			a[min] = buf;
+		}
+	}
+	/*********** Кінець сортування **************/
+
+	for (int i = 0; i < N; i++) 	// Виводжу відсортований масив
+		cout << a[i] << '\t';
+	cout << endl;
 }
